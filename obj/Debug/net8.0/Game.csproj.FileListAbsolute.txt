@@ -12,3 +12,4 @@ C:\Users\samjm\OneDrive\Documents\RPG_Game\Game\obj\Debug\net8.0\refint\Game.dll
 C:\Users\samjm\OneDrive\Documents\RPG_Game\Game\obj\Debug\net8.0\Game.pdb
 C:\Users\samjm\OneDrive\Documents\RPG_Game\Game\obj\Debug\net8.0\Game.genruntimeconfig.cache
 C:\Users\samjm\OneDrive\Documents\RPG_Game\Game\obj\Debug\net8.0\ref\Game.dll
+C:\Users\samjm\OneDrive\Documents\RPG_Game\Game\obj\Debug\net8.0\Game.sourcelink.json
