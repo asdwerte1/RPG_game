@@ -17,7 +17,7 @@ namespace Race
         }
     }
 
-    public static class PredefinedRaces
+    public static class Races
     {
         public static Race Altrian { get; } = new Race("Altrian", 100, 100, 100);
         public static Race Sylvanari { get; } = new Race("Sylvanari", 100, 100, 100);
