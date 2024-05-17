@@ -5,6 +5,6 @@ class Game
 {
     static void Main(string[] args)
     {
-        string player_race = CharacterCreator.ChooseRace();
+        pass;
     }
 }
