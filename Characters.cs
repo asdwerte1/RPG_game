@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace Characters;
 
 public abstract class Character 
@@ -31,21 +33,31 @@ public abstract class Humanoid: Character
 public class PlayerCharacter: Humanoid
 {
     public string? Name { get; private set; }
+    public char? Gender { get; private set; }
 
     public PlayerCharacter()
     {
+        // Set player name
+        this.Name = SetName();
+        
+        // Set gender
+        this.Gender = SetGender();
+    }
+    private static string SetName()
+    {
         bool validInput = false;
-        string? playerNameInput = null;
-        while(validInput != true)
+        string playerNameInput = string.Empty;
+
+        // Player chooses name
+        while(!validInput)
         {
             try
             {
                 Console.WriteLine("Enter the name of your charater: ");
                 playerNameInput = Console.ReadLine();
-                if (playerNameInput != null)
+                if (!string.IsNullOrEmpty(playerNameInput))
                 {
                     Console.WriteLine($"Chosen name: {playerNameInput}");
-                    this.Name = playerNameInput;
                     validInput = true;
                 }
                 else
@@ -58,7 +70,48 @@ public class PlayerCharacter: Humanoid
                 Console.WriteLine("No name entered, please try again.");
                 validInput = false;
             }
-        
         }
+        return playerNameInput;
+    }
+    private static char SetGender()
+    {
+        bool validInput = false;
+        char playerGenderInput = ' ';
+
+        while (!validInput)
+        {
+            try
+            {
+                Console.WriteLine("Enter m or f for the gender you wish your character to be:\n\tMale(m)\n\tFemale(f)");
+                playerGenderInput = Console.ReadLine()[0];
+
+                if (playerGenderInput == 'm' || playerGenderInput == 'M')
+                {
+                    Console.WriteLine("You have chosen male");
+                    validInput = true;
+                }
+                else if (playerGenderInput == 'f' || playerGenderInput == 'F')
+                {
+                    Console.WriteLine("You have chosen female");
+                    validInput = true;
+                }
+                else
+                {
+                    throw new Exception("Invalid gender choice");
+                }
+            }
+            catch (System.Exception)
+            {
+                
+                Console.WriteLine("Invalid gender entered");
+                validInput = false;
+            }
+        }
+        return playerGenderInput;
+    }
+    public string GetGender()
+    {
+        if (this.Gender == 'm' || this.Gender == 'M') return "Male";
+        else return "Female";
     }
 }
