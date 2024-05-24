@@ -1,32 +1,46 @@
+using System.Security;
+using Items;
+
 namespace Characters;
 
 public abstract class Character 
 {
     public int Hp { get; set;}
     public int Stamina { get; protected set; }
-    /*
-    public int Strength { get; private set; }
-    public int Agility { get; private set; }
-    public int Endurance { get; private set; }*/
+    public int Strength { get; protected set; }
+    public int Agility { get; protected set; }
+    public int Endurance { get; protected set; }
 
     public Character()
     {
         this.Hp = 100;
         this.Stamina = 100;
-        //this.Strength = 15;
-        //this.Agility = 15;
-        //this.Endurance = 15;
+        this.Strength = 15;
+        this.Agility = 15;
+        this.Endurance = 15;
     }
 }
 
 public abstract class Humanoid: Character
 {
-    public int Mana {get; protected set;}
-
-    public Humanoid()
-    {
-        this.Mana = 100;
-    }
+    public int Mana {get; protected set;} = 100;
+    public int Intelligence  {get; protected set; } = 15;
+    public int Charisma {get; protected set; } = 15;
+    public int Luck {get; protected set; } = 15;
+    public int Swordsmanship {get; protected set; } = 15;
+    public int DaggerMastery {get; protected set; } = 15;
+    public int OneHandedBlunt {get; protected set;} = 15;
+    public int TwoHandedBlunt { get; protected set; } = 15;
+    public int Bowmanship {get; protected set;} = 15;
+    public int Crafting {get; protected set;} = 15;
+    public int OffensiveMagic {get; protected set;} = 15;
+    public int PassiveMagic {get; protected set;} = 15;
+    public int IllusionMagic {get; protected set;} = 15;
+    public int Necromancy {get; protected set;} = 15;
+    public int Alchemy {get; protected set;} = 15;
+    public int SummoningMagic {get; protected set;} = 15;
+    public int ShadowMagic {get; protected set;} = 15;
+    public int Level {get; protected set;}
 }
 
 public class PlayerCharacter: Humanoid
@@ -141,7 +155,25 @@ public class PlayerCharacter: Humanoid
         this.Hp = startingStats["hp"];
         this.Stamina = startingStats["stamina"];
         this.Mana = startingStats["mana"];
-
+        this.Strength = startingStats["strength"];
+        this.Agility = startingStats["agility"];
+        this.Endurance = startingStats["endurance"];
+        this.Intelligence  = startingStats["intelligence"];
+        this.Charisma = startingStats["charisma"];
+        this.Luck = startingStats["luck"];
+        this.Swordsmanship = startingStats["swordsmanship"];
+        this.DaggerMastery = startingStats["daggerMastery"];
+        this.OneHandedBlunt = startingStats["oneHandedBlunt"];
+        this.TwoHandedBlunt = startingStats["twoHandedBlunt"];
+        this.Bowmanship = startingStats["bowmanship"];
+        this.Crafting = startingStats["crafting"];
+        this.OffensiveMagic = startingStats["offensiveMagic"];
+        this.PassiveMagic = startingStats["passiveMagic"];
+        this.IllusionMagic = startingStats["illusionMagic"];
+        this.Necromancy = startingStats["necromancy"];
+        this.Alchemy = startingStats["alchemy"];
+        this.SummoningMagic = startingStats["summoningMagic"];
+        this.ShadowMagic = startingStats["shadowMagic"];
     }
 }
 
@@ -152,7 +184,7 @@ public class PlayerCharacter: Humanoid
         {
             { "hp", 100 },
             { "stamina", 100 },
-            { "mana", 100 },/*
+            { "mana", 100 },
             { "strength", 15 },
             { "agility", 15 },
             { "endurance", 15 },
@@ -164,13 +196,14 @@ public class PlayerCharacter: Humanoid
             { "oneHandedBlunt", 15 },
             { "twoHandedBlunt" , 15 },
             { "bowmanship", 15 },
+            { "crafting", 15 },
             { "offensiveMagic", 15 },
             { "passiveMagic", 15 },
             { "illusionMagic", 15 },
             { "necromancy", 15 },
             { "alchemy", 15 },
             { "summoningMagic", 15 },
-            { "shadowMagic", 15 }*/
+            { "shadowMagic", 15 }
         };
     public Dictionary<string, int> SetPlayerRace(string raceChoice)
     {
@@ -181,11 +214,28 @@ public class PlayerCharacter: Humanoid
             switch (raceChoice) // Alter starting stats based on chosen race
             {
                 case "altrian":
+                    playerRace["intelligence"] = 20;
+                    playerRace["charisma"] = 20;
+                    playerRace["luck"] = 20;
+                    playerRace["swordsmanship"] = 20;
+                    playerRace["necromancy"] = 10;
+                    playerRace["alchemy"] = 20;
+                    playerRace["summoningMagic"] = 10;
+                    playerRace["shadowMagic"] = 10;
+                    validInput = true;
                     break;
 
                 case "sylvanari":
                     playerRace["hp"] = 80;
                     playerRace["mana"] = 120;
+                    playerRace["strength"] = 10;
+                    playerRace["agility"] = 20;
+                    playerRace["daggerMastery"] = 20;
+                    playerRace["twoHandedBlunt"] = 10;
+                    playerRace["bowmanship"] = 20;
+                    playerRace["passiveMagic"] = 20;
+                    playerRace["illusionMagic"] = 20;
+                    playerRace["shadowMagic"] = 10;
                     validInput = true;
                     break;
                 
@@ -193,6 +243,14 @@ public class PlayerCharacter: Humanoid
                     playerRace["hp"] = 120;
                     playerRace["stamina"] = 120;
                     playerRace["mana"] = 60;
+                    playerRace["strength"] = 20;
+                    playerRace["agility"] = 10;
+                    playerRace["endurance"] = 20;
+                    playerRace["oneHandedBlunt"] = 20;
+                    playerRace["twoHandedBlunt"] = 20;
+                    playerRace["offensiveMagic"] = 20;
+                    playerRace["illusionMagic"] = 10;
+                    playerRace["summoningMagic"] = 10;
                     validInput = true;
                     break;
 
@@ -200,12 +258,28 @@ public class PlayerCharacter: Humanoid
                     playerRace["hp"] = 140;
                     playerRace["stamina"] = 80;
                     playerRace["mana"] = 80;
+                    playerRace["endurance"] = 20;
+                    playerRace["swordsmanship"] = 20;
+                    playerRace["oneHandedBlunt"] = 20;
+                    playerRace["crafting"] = 20;
+                    playerRace["offensiveMagic"] = 10;
+                    playerRace["passiveMagic"] = 20;
+                    playerRace["necromancy"] = 10;
+                    playerRace["summoningMagic"] = 10;
                     validInput = true;
                     break;
 
                 case "emberforge":
                     playerRace["hp"] = 120;
                     playerRace["mana"] = 80;
+                    playerRace["agility"] = 10;
+                    playerRace["intelligence"] = 20;
+                    playerRace["daggerMastery"] = 10;
+                    playerRace["bowmanship"] = 10;
+                    playerRace["crafting"] = 20;
+                    playerRace["offensiveMagic"] = 20;
+                    playerRace["passiveMagic"] = 20;
+                    playerRace["alchemy"] = 20;
                     validInput = true;
                     break;
 
@@ -213,6 +287,14 @@ public class PlayerCharacter: Humanoid
                     playerRace["hp"] = 80;
                     playerRace["stamina"] = 80;
                     playerRace["mana"] = 140;
+                    playerRace["swordsmanship"] = 10;
+                    playerRace["oneHandedBlunt"] = 10;
+                    playerRace["twoHandedBlunt"] = 10;
+                    playerRace["passiveMagic"] = 20;
+                    playerRace["illusionMagic"] = 20;
+                    playerRace["necromancy"] = 20;
+                    playerRace["summoningMagic"] = 20;
+                    playerRace["shadowMagic"] = 20;
                     validInput = true;
                     break;
 
@@ -223,5 +305,41 @@ public class PlayerCharacter: Humanoid
         }while(!validInput);
 
         return playerRace;
+    }
+}
+
+public class Inventory
+{
+    private List<Item> items = new List<Item>();
+
+    public void addItem(Item newItem)
+    {
+        items.Add(newItem);
+    }
+
+    public Item dropItem(Item item)
+    {
+        int index = items.IndexOf(item);
+        if (index != -1)
+        {
+            Item returnItem = items[index];
+            items.RemoveAt(index);
+            return returnItem;
+        }
+        else
+        {
+            throw new ArgumentException("Item not found in the inventory");
+        }
+    }
+
+    public void showItems()
+    {
+        foreach(Item item in items)
+        {
+
+            // Will need to add branching for different child classes of Item
+
+            Console.WriteLine($"{item}"); // This will need formatting in future
+        }
     }
 }
