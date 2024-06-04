@@ -1,2 +1,2 @@
-# An PRG Game I am developing for fun
+# An RPG Game I am developing for fun
 More to come...
